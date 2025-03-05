@@ -628,6 +628,31 @@ section:nth-child(even) {
     box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
 }
 
+/* Fixed WhatsApp Button */
+.whatsapp-corner {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2rem;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+    z-index: 1000;
+    transition: var(--transition);
+    animation: float 3s ease-in-out infinite;
+}
+
+.whatsapp-corner:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .hero h1 {
