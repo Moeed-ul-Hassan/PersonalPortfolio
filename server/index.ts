@@ -59,7 +59,7 @@ app.use((req, res, next) => {
     res.sendFile(path.join(__dirname, "../client/index.html"));
   });
 
-  const port = 5000;
+  const port = process.env.PORT || 3000;
   server.listen({
     port,
     host: "0.0.0.0",
