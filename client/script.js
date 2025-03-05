@@ -1,16 +1,31 @@
 // Preloader functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Make sure preloader is visible
+    const preloader = document.querySelector('.preloader');
+    preloader.style.display = 'flex';
+    preloader.style.opacity = '1';
+    
+    // Prevent scrolling while preloader is active
+    document.body.style.overflow = 'hidden';
+});
+
 window.addEventListener('load', function() {
     // Hide preloader when page is fully loaded
     const preloader = document.querySelector('.preloader');
+    
+    // Keep preloader visible for 5 seconds
     setTimeout(() => {
-        preloader.classList.add('hidden');
-        // Enable scrolling on the body once preloader is hidden
-        document.body.style.overflow = 'auto';
-    }, 3000); // Hide after 3 seconds to ensure animation completes
+        // Add fade-out animation
+        preloader.classList.add('fade-out');
+        
+        // Remove preloader from DOM after animation completes
+        setTimeout(() => {
+            preloader.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }, 1000);
+    }, 5000); // Increased to 5 seconds for better visibility
 });
-
-// Prevent scrolling while preloader is active
-document.body.style.overflow = 'hidden';
+</old_str>
 
 // Add theme toggle functionality
 const themeToggle = document.getElementById('theme-toggle');
