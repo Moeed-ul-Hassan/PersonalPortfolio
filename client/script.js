@@ -1,3 +1,17 @@
+// Preloader functionality
+window.addEventListener('load', function() {
+    // Hide preloader when page is fully loaded
+    const preloader = document.querySelector('.preloader');
+    setTimeout(() => {
+        preloader.classList.add('hidden');
+        // Enable scrolling on the body once preloader is hidden
+        document.body.style.overflow = 'auto';
+    }, 3000); // Hide after 3 seconds to ensure animation completes
+});
+
+// Prevent scrolling while preloader is active
+document.body.style.overflow = 'hidden';
+
 // Add theme toggle functionality
 const themeToggle = document.getElementById('theme-toggle');
 const themeIcon = themeToggle.querySelector('i');
