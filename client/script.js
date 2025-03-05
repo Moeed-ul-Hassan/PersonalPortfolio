@@ -4,9 +4,7 @@ const navLinks = document.querySelector('.nav-links');
 
 hamburger.addEventListener('click', () => {
     navLinks.classList.toggle('active');
-    // Animate hamburger
-    const spans = hamburger.querySelectorAll('span');
-    spans.forEach(span => span.classList.toggle('active'));
+    hamburger.classList.toggle('active');
 });
 
 // Smooth scroll for navigation links
@@ -16,20 +14,52 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
             target.scrollIntoView({
-                behavior: 'smooth'
+                behavior: 'smooth',
+                block: 'start'
             });
             // Close mobile menu if open
             navLinks.classList.remove('active');
+            hamburger.classList.remove('active');
         }
     });
 });
 
-// Contact form submission
+// Animate elements on scroll
+const animateOnScroll = (entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            observer.unobserve(entry.target);
+        }
+    });
+};
+
+const observer = new IntersectionObserver(animateOnScroll, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+});
+
+// Observe elements with animation
+document.querySelectorAll('.skill-card, .project-card, .contact-form').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    observer.observe(el);
+});
+
+// Contact form submission with animation
 const contactForm = document.getElementById('contact-form');
 
 contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    
+
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+    const originalText = submitButton.textContent;
+
+    // Add loading state
+    submitButton.disabled = true;
+    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+
     const formData = {
         name: document.getElementById('name').value,
         email: document.getElementById('email').value,
@@ -46,31 +76,43 @@ contactForm.addEventListener('submit', async (e) => {
         });
 
         if (response.ok) {
-            alert('Message sent successfully!');
+            // Success animation
+            submitButton.innerHTML = '<i class="fas fa-check"></i> Sent!';
+            submitButton.style.backgroundColor = '#48BB78';
             contactForm.reset();
+
+            // Reset button after 2 seconds
+            setTimeout(() => {
+                submitButton.innerHTML = originalText;
+                submitButton.style.backgroundColor = '';
+                submitButton.disabled = false;
+            }, 2000);
         } else {
             throw new Error('Failed to send message');
         }
     } catch (error) {
-        alert('Error sending message. Please try again.');
+        // Error animation
+        submitButton.innerHTML = '<i class="fas fa-times"></i> Error';
+        submitButton.style.backgroundColor = '#F56565';
+
+        // Reset button after 2 seconds
+        setTimeout(() => {
+            submitButton.innerHTML = originalText;
+            submitButton.style.backgroundColor = '';
+            submitButton.disabled = false;
+        }, 2000);
+
         console.error('Error:', error);
     }
 });
 
-// Animate on scroll
-const observerOptions = {
-    threshold: 0.1
-};
+// Add parallax effect to hero section
+window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const hero = document.querySelector('.hero');
+    const parallaxSpeed = 0.5;
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('animate');
-        }
-    });
-}, observerOptions);
-
-// Observe all sections
-document.querySelectorAll('section').forEach(section => {
-    observer.observe(section);
+    if (hero) {
+        hero.style.backgroundPositionY = `${scrolled * parallaxSpeed}px`;
+    }
 });
