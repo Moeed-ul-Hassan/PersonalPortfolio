@@ -1,181 +1,232 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moeed ul Hassan - Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="preloader.css">
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-<body>
-    <!-- Preloader -->
-    <div class="preloader">
-        <div class="pencil">
-            <div class="pencil__ball-point"></div>
-            <div class="pencil__cap"></div>
-            <div class="pencil__cap-base"></div>
-            <div class="pencil__middle"></div>
-            <div class="pencil__eraser"></div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Moeed ul Hassan - Portfolio</title>
+        <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="preloader.css" />
+        <!-- Font Awesome for icons -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        />
+    </head>
+    <body>
+        <!-- Preloader -->
+        <div class="preloader">
+            <div class="pencil">
+                <div class="pencil__ball-point"></div>
+                <div class="pencil__cap"></div>
+                <div class="pencil__cap-base"></div>
+                <div class="pencil__middle"></div>
+                <div class="pencil__eraser"></div>
+            </div>
+            <div class="line"></div>
+            <h2>Page Loading...Please Wait</h2>
         </div>
-        <div class="line"></div>
-        <h2>Page Loading...Please Wait</h2>
-    </div>
-    
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="logo">Portfolio</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li>
-                    <button id="theme-toggle" class="theme-toggle">
-                        <i class="fas fa-moon"></i>
+
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">Portfolio</div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li>
+                        <button id="theme-toggle" class="theme-toggle">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>
+                            Hi, I'm
+                            <span class="highlight">Moeed ul Hassan</span>
+                        </h1>
+                        <p class="subtitle">
+                            MERN Stack Developer based in Pakistan
+                        </p>
+                        <div class="cta-buttons">
+                            <a href="#contact" class="btn primary"
+                                >Get in Touch</a
+                            >
+                            <a href="#" class="btn secondary">Download CV</a>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <img
+                            src="profile-pic.png"
+                            alt="Moeed ul Hassan"
+                            class="profile-picture"
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-content">
+                    <div class="about-image">
+                        <img
+                            src="https://images.unsplash.com/photo-1667979010455-2e3fb643cc7e"
+                            alt="Profile picture"
+                        />
+                    </div>
+                    <div class="about-text">
+                        <p>
+                            As a MERN Stack Developer, I specialize in building
+                            modern web applications using MongoDB, Express.js,
+                            React, and Node.js. I'm passionate about creating
+                            responsive and user-friendly applications using the
+                            latest technologies.
+                        </p>
+                        <p>
+                            I'm dedicated to writing clean, efficient code and
+                            delivering exceptional user experiences with modern
+                            JavaScript solutions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills">
+            <div class="container">
+                <h2 class="section-title">Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <i class="fab fa-react"></i>
+                        <h3>React.js</h3>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fab fa-node-js"></i>
+                        <h3>Node.js</h3>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fab fa-js"></i>
+                        <h3>JavaScript</h3>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-database"></i>
+                        <h3>MongoDB</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects">
+            <div class="container">
+                <h2 class="section-title">Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <img
+                            src="https://images.unsplash.com/photo-1460925895917-afdab827c52f"
+                            alt="Project 1"
+                        />
+                        <div class="project-info">
+                            <h3>E-Commerce Platform</h3>
+                            <p>
+                                A full-featured MERN stack e-commerce platform
+                                with payment integration
+                            </p>
+                            <a href="#" class="btn-small">View Project</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img
+                            src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97"
+                            alt="Project 2"
+                        />
+                        <div class="project-info">
+                            <h3>Task Management App</h3>
+                            <p>
+                                A real-time task management application built
+                                with MERN stack
+                            </p>
+                            <a href="#" class="btn-small">View Project</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img
+                            src="https://images.unsplash.com/photo-1552581234-26160f608093"
+                            alt="Project 3"
+                        />
+                        <div class="project-info">
+                            <h3>Social Media Dashboard</h3>
+                            <p>
+                                A comprehensive social media management
+                                dashboard
+                            </p>
+                            <a href="#" class="btn-small">View Project</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2 class="section-title">Get in Touch</h2>
+                <!-- Contact form below -->
+                <form id="contact-form" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea
+                            id="message"
+                            name="message"
+                            required
+                        ></textarea>
+                    </div>
+                    <button type="submit" class="btn primary">
+                        Send Message
                     </button>
-                </li>
-            </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+                </form>
             </div>
-        </div>
-    </nav>
+        </section>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1>Hi, I'm <span class="highlight">Moeed ul Hassan</span></h1>
-                    <p class="subtitle">MERN Stack Developer based in Pakistan</p>
-                    <div class="cta-buttons">
-                        <a href="#contact" class="btn primary">Get in Touch</a>
-                        <a href="#" class="btn secondary">Download CV</a>
-                    </div>
-                </div>
-                <div class="hero-image">
-                    <img src="profile-pic.png" alt="Moeed ul Hassan" class="profile-picture">
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <p>&copy; 2024 Moeed ul Hassan. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
                 </div>
             </div>
-        </div>
-    </section>
+        </footer>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1667979010455-2e3fb643cc7e" alt="Profile picture">
-                </div>
-                <div class="about-text">
-                    <p>As a MERN Stack Developer, I specialize in building modern web applications using MongoDB, Express.js, React, and Node.js. I'm passionate about creating responsive and user-friendly applications using the latest technologies.</p>
-                    <p>I'm dedicated to writing clean, efficient code and delivering exceptional user experiences with modern JavaScript solutions.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        <!-- Fixed corner button removed -->
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <h2 class="section-title">Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <i class="fab fa-react"></i>
-                    <h3>React.js</h3>
-                </div>
-                <div class="skill-card">
-                    <i class="fab fa-node-js"></i>
-                    <h3>Node.js</h3>
-                </div>
-                <div class="skill-card">
-                    <i class="fab fa-js"></i>
-                    <h3>JavaScript</h3>
-                </div>
-                <div class="skill-card">
-                    <i class="fas fa-database"></i>
-                    <h3>MongoDB</h3>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2 class="section-title">Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f" alt="Project 1">
-                    <div class="project-info">
-                        <h3>E-Commerce Platform</h3>
-                        <p>A full-featured MERN stack e-commerce platform with payment integration</p>
-                        <a href="#" class="btn-small">View Project</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97" alt="Project 2">
-                    <div class="project-info">
-                        <h3>Task Management App</h3>
-                        <p>A real-time task management application built with MERN stack</p>
-                        <a href="#" class="btn-small">View Project</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <img src="https://images.unsplash.com/photo-1552581234-26160f608093" alt="Project 3">
-                    <div class="project-info">
-                        <h3>Social Media Dashboard</h3>
-                        <p>A comprehensive social media management dashboard</p>
-                        <a href="#" class="btn-small">View Project</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Get in Touch</h2>
-            <!-- Contact form below -->
-            <form id="contact-form" class="contact-form">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" required></textarea>
-                </div>
-                <button type="submit" class="btn primary">Send Message</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 Moeed ul Hassan. All rights reserved.</p>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-github"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Fixed corner button removed -->
-
-    <script src="script.js"></script>
-</body>
+        <script src="script.js"></script>
+    </body>
 </html>
