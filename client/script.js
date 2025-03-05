@@ -8,6 +8,7 @@ document.documentElement.setAttribute('data-theme', savedTheme);
 updateThemeIcon(savedTheme);
 
 themeToggle.addEventListener('click', () => {
+    document.body.style.transition = 'background-color 0.3s ease';
     const currentTheme = document.documentElement.getAttribute('data-theme');
     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
 
@@ -57,7 +58,7 @@ const animateOnScroll = (entries, observer) => {
     });
 };
 
-const observer = new IntersectionObserver(animateOnScroll, {
+const observerOriginal = new IntersectionObserver(animateOnScroll, {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
 });
@@ -66,7 +67,31 @@ const observer = new IntersectionObserver(animateOnScroll, {
 document.querySelectorAll('.skill-card, .project-card, .contact-form').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(20px)';
-    observer.observe(el);
+    observerOriginal.observe(el);
+});
+
+
+// Enhanced scroll reveal animations
+const scrollReveal = (entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('reveal');
+      observer.unobserve(entry.target);
+    }
+  });
+};
+
+const observerOptions = {
+  threshold: 0.15,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observerScrollReveal = new IntersectionObserver(scrollReveal, observerOptions);
+
+// Observe all sections and cards
+document.querySelectorAll('section, .skill-card, .project-card').forEach(el => {
+  el.classList.add('hidden');
+  observerScrollReveal.observe(el);
 });
 
 // Contact form submission with animation
@@ -128,13 +153,32 @@ contactForm.addEventListener('submit', async (e) => {
     }
 });
 
-// Add parallax effect to hero section
+// Add smooth parallax effect to hero section
 window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const hero = document.querySelector('.hero');
-    const parallaxSpeed = 0.5;
+  const scrolled = window.pageYOffset;
+  const hero = document.querySelector('.hero');
+  const heroContent = document.querySelector('.hero .container');
 
-    if (hero) {
-        hero.style.backgroundPositionY = `${scrolled * parallaxSpeed}px`;
-    }
+  if (hero && heroContent) {
+    hero.style.backgroundPositionY = `${scrolled * 0.5}px`;
+    heroContent.style.transform = `translateY(${scrolled * 0.3}px)`;
+    heroContent.style.opacity = 1 - (scrolled * 0.003);
+  }
+});
+
+// Add ripple effect to buttons
+document.querySelectorAll('.btn').forEach(button => {
+  button.addEventListener('click', function(e) {
+    const x = e.clientX - e.target.offsetLeft;
+    const y = e.clientY - e.target.offsetTop;
+
+    const ripple = document.createElement('span');
+    ripple.classList.add('ripple');
+    ripple.style.left = `${x}px`;
+    ripple.style.top = `${y}px`;
+
+    this.appendChild(ripple);
+
+    setTimeout(() => ripple.remove(), 600);
+  });
 });

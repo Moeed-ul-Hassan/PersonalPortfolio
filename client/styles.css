@@ -28,10 +28,10 @@
     --light-text: #cbd5e0;
     --background: #1a1b26;
     --section-bg: #24283b;
-    --card-bg: #1f2937;
-    --border-color: #374151;
-    --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    --hover-shadow: 0 20px 40px rgba(189, 147, 249, 0.2);
+    --card-bg: rgba(31, 41, 55, 0.5);
+    --border-color: rgba(55, 65, 81, 0.5);
+    --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    --hover-shadow: 0 20px 40px rgba(189, 147, 249, 0.3);
 }
 
 @keyframes fadeIn {
@@ -60,6 +60,19 @@
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
+}
+
+/* Add more keyframe animations */
+@keyframes glow {
+  0% { box-shadow: 0 0 5px rgba(121, 40, 202, 0.2); }
+  50% { box-shadow: 0 0 20px rgba(121, 40, 202, 0.4); }
+  100% { box-shadow: 0 0 5px rgba(121, 40, 202, 0.2); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
 }
 
 html {
@@ -168,7 +181,7 @@ body {
 /* Hero Section */
 .hero {
     padding: 160px 0 100px;
-    background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+    background: linear-gradient(135deg, rgba(121, 40, 202, 0.1), rgba(255, 0, 128, 0.1)),
                 url('https://images.unsplash.com/photo-1506443102696-39d0c10eae2b');
     background-size: cover;
     background-position: center;
@@ -177,8 +190,31 @@ body {
     overflow: hidden;
 }
 
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, 
+    rgba(121, 40, 202, 0.2), 
+    rgba(255, 0, 128, 0.2)
+  );
+  animation: gradientBG 10s ease infinite;
+  background-size: 400% 400%;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 1;
+}
+
 [data-theme="dark"] .hero {
-    background: linear-gradient(rgba(26, 27, 38, 0.9), rgba(26, 27, 38, 0.9)),
+    background: linear-gradient(135deg, 
+                rgba(189, 147, 249, 0.1), 
+                rgba(255, 121, 198, 0.1)
+                ),
                 url('https://images.unsplash.com/photo-1506443102696-39d0c10eae2b');
 }
 
@@ -213,6 +249,26 @@ body {
     transition: var(--transition);
     animation: fadeIn 1s ease 0.6s backwards;
     border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.btn:hover::before {
+  width: 300px;
+  height: 300px;
 }
 
 .btn.primary {
@@ -277,6 +333,9 @@ section:nth-child(even) {
     border: 2px solid transparent;
     position: relative;
     overflow: hidden;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .skill-card::before {
@@ -296,8 +355,8 @@ section:nth-child(even) {
 }
 
 .skill-card:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--hover-shadow);
+    transform: translateY(-15px) scale(1.02);
+    animation: glow 2s ease-in-out infinite;
     border-color: var(--primary-color);
 }
 
@@ -306,6 +365,7 @@ section:nth-child(even) {
     margin-bottom: 1rem;
     color: var(--primary-color);
     transition: var(--transition);
+    animation: float 3s ease-in-out infinite;
 }
 
 .skill-card:hover i {
@@ -332,6 +392,8 @@ section:nth-child(even) {
     animation: fadeIn 0.5s ease forwards;
     border: 2px solid transparent;
     position: relative;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .project-card::after {
@@ -347,11 +409,34 @@ section:nth-child(even) {
 
 .project-card:hover {
     transform: translateY(-10px) scale(1.02);
+    animation: glow 2s ease-in-out infinite;
     border-color: var(--primary-color);
 }
 
 .project-card:hover::after {
     opacity: 0.1;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, 
+    var(--primary-color), 
+    var(--secondary-color), 
+    var(--primary-color)
+  );
+  z-index: -1;
+  border-radius: 16px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-card:hover::before {
+  opacity: 1;
 }
 
 .project-card img {
@@ -379,6 +464,9 @@ section:nth-child(even) {
     padding: 2rem;
     border-radius: 16px;
     box-shadow: var(--card-shadow);
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .form-group {
@@ -408,6 +496,7 @@ section:nth-child(even) {
     border-color: var(--primary-color);
     box-shadow: 0 0 0 3px rgba(var(--primary-color), 0.2);
     outline: none;
+    animation: glow 2s ease-in-out infinite;
 }
 
 .contact-form textarea {
@@ -434,11 +523,26 @@ section:nth-child(even) {
     color: var(--text-color);
     font-size: 1.5rem;
     transition: var(--transition);
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(45deg, 
+      var(--primary-color), 
+      var(--secondary-color)
+    );
+    color: white;
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
 }
 
 .social-links a:hover {
     color: var(--primary-color);
-    transform: translateY(-3px);
+    transform: translateY(-5px) scale(1.1);
+    animation: glow 2s ease-in-out infinite;
 }
 
 /* Responsive Design */
